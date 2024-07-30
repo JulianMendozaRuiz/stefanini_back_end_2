@@ -7,7 +7,12 @@ name = "pypi"
 django = "*"
 djangorestframework = "*"
 environs = "*"
-pymongo = "*"
+django-cors-headers = "*"
+dnspython = "*"
+djongo = "*"
+pytz = "*"
+mysqlclient = "*"
+pymongo = "===3.12.3"
 
 [dev-packages]
 

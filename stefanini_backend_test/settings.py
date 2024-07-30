@@ -39,10 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'api',
     'rest_framework',
-    'products'
+    'products',
+    'product_types',
+    'corsheaders'
 ]
 
+CORS_ORIGIN_ALLOW_ALLO = True
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -76,12 +81,32 @@ WSGI_APPLICATION = 'stefanini_backend_test.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+DATABASE_ROUTERS = ['stefanini_backend_test.ProductRouter.ProductRouter',
+                    'stefanini_backend_test.ProductTypeRouter.ProductTypeRouter']
+
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
-    'default': {}
+    'default': {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "other.sqlite3"
+    },
+    'product_types': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'MYAPP',
+        'USER': 'admin',
+        'PASSWORD': 'stefanini',
+        'HOST': 'stefanini-mysql-db-jdmr.c7g48866ssu2.us-east-1.rds.amazonaws.com',
+        'PORT': '3306'
+    },
+    'products': {
+        'ENGINE': 'djongo',
+        'NAME': 'PRODUCTS',
+        'ENFORCE_SCHEMA': False,
+        'CLIENT': {
+            "host": "mongodb+srv://admin:saQUVmm207hX0qw6@cluster0.jtqyl8f.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+            "name": "PRODUCTS",
+            "authMechanism": "SCRAM-SHA-1"
+        }
+    }
 }
 
 
