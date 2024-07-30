@@ -44,10 +44,11 @@ INSTALLED_APPS = [
     'corsheaders'
 ]
 
-CORS_ORIGIN_ALLOW_ALLO = True
+CORS_ORIGIN_ALLOW_ALL_ORIGINS = True
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -108,6 +109,10 @@ DATABASES = {
         }
     }
 }
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:4200",
+    "http://127.0.0.1:4200",
+]
 
 
 # Password validation
